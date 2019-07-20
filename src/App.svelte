@@ -2,12 +2,14 @@
   import Header from "./components/Header.svelte";
   import Footer from "./components/Footer.svelte";
   import Main from "./components/Main.svelte";
+  import CoverPreview from "./components/CoverPreview.svelte";
+  import GenreDialog from "./components/GenreDialog.svelte";
 </script>
 
 <style>
-:global(html) {
-  height: 100%;
-}
+  :global(html) {
+    height: 100%;
+  }
   :global(body) {
     padding: 0;
     margin: 0;
@@ -19,6 +21,8 @@
   }
 </style>
 
-<Header/>
-<Main/>
-<Footer/>
+<Header />
+<Main />
+<GenreDialog />
+<CoverPreview />
+<Footer />

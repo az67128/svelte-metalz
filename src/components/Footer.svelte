@@ -2,7 +2,14 @@
   import IconButton from "./IconButton.svelte";
   import YandexIcon from "../assets/YandexIcon.svelte";
   import GoogleIcon from "../assets/GoogleIcon.svelte";
-  import { filterYandex, filterGoogle, sortByAphabet } from "../stores/albums";
+  import GuitarIcon from "../assets/GuitarIcon.svelte";
+  import {
+    filterYandex,
+    filterGoogle,
+    sortByAphabet,
+    showGenreDialog,
+    selectedGenres
+  } from "../stores/albums";
 </script>
 
 <style>
@@ -18,17 +25,29 @@
     align-items: center;
     font-size: 1.2rem;
     font-weight: bold;
+    background: #212121;
+  }
+  .sortButton {
+    width: 32px;
+    color: white;
+    text-align: center;
   }
 </style>
 
 <footer>
+  <IconButton onClick={() => showGenreDialog.update(state => !state)}>
+
+    <GuitarIcon fill={$selectedGenres.length > 0 ? '#b2102f' : 'white'} />
+  </IconButton>
   <IconButton onClick={() => filterYandex.update(state => !state)}>
-    <YandexIcon />
+    <YandexIcon fill={$filterYandex ? '#b2102f' : 'white'} />
   </IconButton>
   <IconButton onClick={() => filterGoogle.update(state => !state)}>
-    <GoogleIcon />
+    <GoogleIcon fill={$filterGoogle ? '#b2102f' : 'white'} />
   </IconButton>
-  <IconButton onClick={() => sortByAphabet.update(state => !state)}>
-    {$sortByAphabet ? 'AZ' : '321'}
-  </IconButton>
+  <div class="sortButton">
+    <IconButton onClick={() => sortByAphabet.update(state => !state)}>
+      {$sortByAphabet ? 'AZ' : '321'}
+    </IconButton>
+  </div>
 </footer>

@@ -8,6 +8,24 @@ export const coverPreviewSrc = writable(null);
 export const filterYandex = writable(false);
 export const filterGoogle = writable(false);
 export const sortByAphabet = writable(false);
+export const showGenreDialog = writable(false);
+
+export const selectedGenres = (() => {
+  const { subscribe, set, update } = writable([]);
+  return {
+    subscribe,
+    toggle: genre =>
+      update(genres => {
+        if (genres.some(item => item === genre)) {
+          return genres.filter(item => item !== genre);
+        } else {
+          return [...genres, genre];
+        }
+      }),
+    reset: () => set([]),
+  };
+})();
+
 export const albums = (() => {
   const { subscribe, set, update } = writable([]);
   return {
@@ -43,13 +61,20 @@ currentMonth.subscribe(value => {
 });
 
 export const sortedAlbums = derived(
-  [albums, filterYandex, filterGoogle, sortByAphabet],
-  ([$albums, $filterYandex, $filterGoogle, $sortByAphabet]) => {
+  [albums, filterYandex, filterGoogle, sortByAphabet, selectedGenres],
+  ([$albums, $filterYandex, $filterGoogle, $sortByAphabet, $selectedGenres]) => {
     return $albums
       .filter(album => {
         const yandex = $filterYandex ? !!album.yandex_link : true;
         const google = $filterGoogle ? !!album.google_link : true;
-        return yandex && google;
+
+        const genre =
+          $selectedGenres.length > 0
+            ? $selectedGenres.some(
+                item => album.genre.toLowerCase().indexOf(item.toLowerCase()) > -1
+              )
+            : true;
+        return yandex && google && genre;
       })
       .sort((a, b) => {
         if ($sortByAphabet) {

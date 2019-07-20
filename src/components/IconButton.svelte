@@ -4,12 +4,14 @@
 
 <style>
   .button {
+    position: relative;
     background: none;
     cursor: pointer;
     border: none;
     padding: 0;
     margin: 0;
     height: 24px;
+    color: inherit;
   }
   @media (any-hover: none) {
     .button {
@@ -19,5 +21,7 @@
 </style>
 
 <button on:click={onClick} class="button">
+
   <slot />
+
 </button>

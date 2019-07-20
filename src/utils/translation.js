@@ -8,6 +8,10 @@ const translation = {
     'ru-RU': ['ЯНВ', 'ФЕВ', 'МАР', 'АПР', 'МАЙ', 'ИЮН', 'ИЮЛ', 'АВГ', 'СЕН', 'ОКТ', 'НОЯ', 'ДЕК'],
     'en-US': ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEN', 'OCT', 'NOV', 'DEC'],
   },
+  genreSelectTitle: {
+    'ru-RU': 'ВЫБЕРИТЕ ЖАНРЫ',
+    'en-US': 'SELECT GENRES',
+  },
 };
 
 export default function translate(text) {

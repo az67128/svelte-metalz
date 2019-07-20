@@ -23,6 +23,9 @@
   .lastFmContainer div {
     margin-left: 0.5rem;
   }
+  .googleLink {
+    margin-left: 0.5rem;
+  }
 </style>
 
 {#if listeners}
@@ -42,9 +45,11 @@
         </IconLink>
       {/if}
       {#if google_link}
-        <IconLink href={`https://play.google.com/music/m/${google_link}`}>
-          <GoogleIcon />
-        </IconLink>
+        <span class="googleLink">
+          <IconLink href={`https://play.google.com/music/m/${google_link}`}>
+            <GoogleIcon />
+          </IconLink>
+        </span>
       {/if}
 
     </div>

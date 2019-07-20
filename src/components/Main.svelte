@@ -1,9 +1,20 @@
 <script>
   import { afterUpdate } from "svelte";
   import Album from "./Album/index.svelte";
-  import { sortedAlbums, isLoading } from "../stores/albums";
+  import {
+    sortedAlbums,
+    isLoading,
+    filterYandex,
+    filterGoogle
+  } from "../stores/albums";
   import Loader from "./Loader.svelte";
-  import CoverPreview from "./CoverPreview.svelte";
+
+  let container;
+  const scrollToTop = () => {
+    if (container) container.scrollTop = 0;
+  };
+  filterYandex.subscribe(scrollToTop);
+  filterGoogle.subscribe(scrollToTop);
   let trigger;
   let limit = 11;
   const options = {
@@ -40,8 +51,7 @@
   }
 </style>
 
-<CoverPreview />
-<main class="main">
+<main class="main" bind:this={container}>
   {#if $isLoading}
     <Loader />
   {:else}
