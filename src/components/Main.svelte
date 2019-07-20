@@ -1,7 +1,28 @@
 <script>
+  import { afterUpdate } from "svelte";
   import Album from "./Album/index.svelte";
-  import { albums, isLoading } from "../stores/albums";
+  import { sortedAlbums, isLoading } from "../stores/albums";
   import Loader from "./Loader.svelte";
+  import CoverPreview from "./CoverPreview.svelte";
+  let trigger;
+  let limit = 11;
+  const options = {
+    root: document.querySelector(".main"),
+    rootMargin: "10px",
+    threshold: 1.0
+  };
+  const callback = function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        limit = +entry.target.getAttribute("index") + 10;
+      }
+    });
+  };
+  const observer = new IntersectionObserver(callback, options);
+
+  afterUpdate(() => {
+    if (trigger) observer.observe(trigger);
+  });
 </script>
 
 <style>
@@ -10,14 +31,25 @@
     overflow: auto;
     background: #f5f5f5;
   }
+  @media (min-width: 600px) {
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
 </style>
 
+<CoverPreview />
 <main class="main">
   {#if $isLoading}
     <Loader />
   {:else}
-    {#each $albums.slice(0, 10) as album, index (album.album_id)}
+    {#each $sortedAlbums.slice(0, limit) as album, index (album.album_id)}
       <Album {album} />
+      {#if (index + 1) % 5 === 0 || index + 1 === limit}
+        <span bind:this={trigger} {index} />
+      {/if}
     {/each}
   {/if}
 

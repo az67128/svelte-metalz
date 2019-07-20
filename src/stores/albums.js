@@ -1,9 +1,13 @@
 import { writable, get } from 'svelte/store';
 import { getAlbums } from '../utils/api';
+import { derived } from 'svelte/store';
 
 export const isLoading = writable(false);
 export const hasError = writable(false);
-
+export const coverPreviewSrc = writable(null);
+export const filterYandex = writable(false);
+export const filterGoogle = writable(false);
+export const sortByAphabet = writable(false);
 export const albums = (() => {
   const { subscribe, set, update } = writable([]);
   return {
@@ -37,3 +41,22 @@ window.currentMonth = currentMonth;
 currentMonth.subscribe(value => {
   albums.get(value.getFullYear(), value.getMonth() + 1);
 });
+
+export const sortedAlbums = derived(
+  [albums, filterYandex, filterGoogle, sortByAphabet],
+  ([$albums, $filterYandex, $filterGoogle, $sortByAphabet]) => {
+    return $albums
+      .filter(album => {
+        const yandex = $filterYandex ? !!album.yandex_link : true;
+        const google = $filterGoogle ? !!album.google_link : true;
+        return yandex && google;
+      })
+      .sort((a, b) => {
+        if ($sortByAphabet) {
+          return a.title < b.title ? -1 : 1;
+        } else {
+          return a.listeners < b.listeners ? 1 : -1;
+        }
+      });
+  }
+);

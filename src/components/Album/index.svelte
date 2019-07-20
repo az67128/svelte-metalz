@@ -22,6 +22,27 @@
     border-radius: 8px;
     background: #fff;
   }
+  @media (min-width: 600px) {
+    .album {
+      flex-grow: 1;
+
+      width: 45%;
+    }
+  }
+  @media (min-width: 1200px) {
+    .album {
+      flex-grow: 1;
+
+      width: 30%;
+    }
+  }
+  @media (min-width: 1400px) {
+    .album {
+      flex-grow: 1;
+
+      width: 20%;
+    }
+  }
 </style>
 
 <div class="album">

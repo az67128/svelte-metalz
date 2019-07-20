@@ -11,11 +11,9 @@
     padding: 1rem;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    display: flex;
-    align-items: center;
-  }
-  .bar {
-    flex-grow: 1;
+
+    z-index: 1;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,15 +24,14 @@
 
 <header>
 
-  <div class="bar">
-    <IconButton onClick={currentMonth.nextMonth}>
-      <LeftArrowIcon />
-    </IconButton>
-    <div>
-      {translate('month')[$currentMonth.getMonth()]}{' '}{$currentMonth.getFullYear()}
-    </div>
-    <IconButton onClick={currentMonth.prevMonth}>
-      <RightArrowIcon />
-    </IconButton>
+  <IconButton onClick={currentMonth.prevMonth}>
+    <LeftArrowIcon />
+  </IconButton>
+  <div>
+    {translate('month')[$currentMonth.getMonth()]}{' '}{$currentMonth.getFullYear()}
   </div>
+  <IconButton onClick={currentMonth.nextMonth}>
+    <RightArrowIcon />
+  </IconButton>
+
 </header>

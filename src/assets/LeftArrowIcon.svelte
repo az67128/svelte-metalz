@@ -1,4 +1,8 @@
-<svg width="24" viewBox="0 0 477.175 477.175" transform="rotate(180)">
+<script>
+  export let fill = "black";
+</script>
+
+<svg width="24" viewBox="0 0 477.175 477.175" transform="rotate(180)" {fill}>
   <g>
     <path
       d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
