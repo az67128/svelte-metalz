@@ -1,8 +1,14 @@
+<script>
+  export let onClick = () => {};
+</script>
+
 <style>
   .button {
     background: none;
     cursor: pointer;
     border: none;
+    padding: 0;
+    margin: 0;
   }
   @media (any-hover: none) {
     .button {
@@ -10,6 +16,7 @@
     }
   }
 </style>
-<button class="button">
-	<slot></slot>
+
+<button on:click={onClick} class="button">
+  <slot />
 </button>

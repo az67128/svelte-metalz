@@ -1,5 +1,9 @@
 <script>
-  import ArrowIcon from "../assets/ArrowIcon.svelte";
+  import LeftArrowIcon from "../assets/LeftArrowIcon.svelte";
+  import RightArrowIcon from "../assets/RightArrowIcon.svelte";
+  import { currentMonth } from "../stores/albums";
+  import translate from "../utils/translation";
+  import IconButton from "./IconButton.svelte";
 </script>
 
 <style>
@@ -13,7 +17,7 @@
   .bar {
     flex-grow: 1;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     font-size: 1.2rem;
     font-weight: bold;
@@ -23,8 +27,14 @@
 <header>
 
   <div class="bar">
-    <ArrowIcon />
-    <div>Jul 2017</div>
-    <ArrowIcon />
+    <IconButton onClick={currentMonth.nextMonth}>
+      <LeftArrowIcon />
+    </IconButton>
+    <div>
+      {translate('month')[$currentMonth.getMonth()]}{' '}{$currentMonth.getFullYear()}
+    </div>
+    <IconButton onClick={currentMonth.prevMonth}>
+      <RightArrowIcon />
+    </IconButton>
   </div>
 </header>

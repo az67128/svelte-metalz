@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import { getAlbums } from '../api';
+import { getAlbums } from '../utils/api';
 
 export const isLoading = writable(false);
 export const hasError = writable(false);
