@@ -1,6 +1,7 @@
 function getLang() {
-  if (navigator.languages != undefined) return navigator.languages[0];
-  else return navigator.language;
+  // if (navigator.languages != undefined) return navigator.languages[0];
+  // else return navigator.language;
+  return 'en-US';
 }
 const lang = getLang();
 const translation = {

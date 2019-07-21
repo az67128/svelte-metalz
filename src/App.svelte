@@ -20,6 +20,11 @@
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background: #f5f5f5;
   }
+  :global(#sapper) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 </style>
 
 <Header />

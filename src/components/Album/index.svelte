@@ -23,29 +23,30 @@
     background: #fff;
   }
   @media (min-width: 600px) {
-    .album {
+    .wrapper {
       flex-grow: 1;
 
-      width: 45%;
+      width: 50%;
     }
   }
   @media (min-width: 1200px) {
-    .album {
+    .wrapper {
       flex-grow: 1;
 
-      width: 30%;
+      width: 33.33%;
     }
   }
   @media (min-width: 1400px) {
-    .album {
+    .wrapper {
       flex-grow: 1;
-
-      width: 20%;
+      width: 25%;
     }
   }
 </style>
 
-<div class="album">
-  <Content {cover_url} {title} {author} {genre} />
-  <Footer {listeners} {lastfm_url} {yandex_link} {google_link} />
+<div class="wrapper">
+  <div class="album">
+    <Content {cover_url} {title} {author} {genre} />
+    <Footer {listeners} {lastfm_url} {yandex_link} {google_link} />
+  </div>
 </div>

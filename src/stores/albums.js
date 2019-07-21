@@ -55,7 +55,7 @@ export const currentMonth = (() => {
   };
 })();
 
-window.currentMonth = currentMonth;
+
 currentMonth.subscribe(value => {
   albums.get(value.getFullYear(), value.getMonth() + 1);
 });

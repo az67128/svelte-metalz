@@ -63,7 +63,9 @@
 </style>
 
 {#if $showGenreDialog}
-  <div class="genreSelect" transition:fly={{ x: -200, duration: 300 }}>
+  <div
+    class="genreSelect"
+    transition:fly={{ x: -window.innerWidth, duration: 300 }}>
     <header>
       <IconButton onClick={() => showGenreDialog.set(false)}>
         <LeftArrowIcon />

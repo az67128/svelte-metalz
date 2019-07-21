@@ -59,20 +59,23 @@
   // ------------------
   let trigger;
   let limit = 11;
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          limit = +entry.target.getAttribute("index") + 10;
-        }
-      });
-    },
-    {
-      root: document.querySelector(".main"),
-      rootMargin: "10px",
-      threshold: 0.1
-    }
-  );
+  const observer =
+    typeof IntersectionObserver !== "undefined"
+      ? new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                limit = +entry.target.getAttribute("index") + 10;
+              }
+            });
+          },
+          {
+            root: document.querySelector(".main"),
+            rootMargin: "10px",
+            threshold: 0.1
+          }
+        )
+      : null;
   afterUpdate(() => {
     if (trigger) observer.observe(trigger);
   });
@@ -96,6 +99,15 @@
     height: 100%;
     overflow: auto;
   }
+  .intersection {
+    position: relative;
+    left: -100px;
+
+    display: block;
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
 </style>
 
 <main class="main" bind:this={container}>
@@ -112,7 +124,9 @@
       {#each $sortedAlbums.slice(0, limit) as album, index (album.album_id)}
         <Album {album} />
         {#if (index + 1) % 5 === 0 || index + 1 === limit}
-          <span bind:this={trigger} {index} />
+          <span bind:this={trigger} {index} class="intersection">
+            intersection
+          </span>
         {/if}
       {/each}
     {/if}
