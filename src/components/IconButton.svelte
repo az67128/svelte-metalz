@@ -12,6 +12,8 @@
     margin: 0;
     height: 24px;
     color: inherit;
+    font-size: 1rem;
+    outline: none;
   }
   @media (any-hover: none) {
     .button {

@@ -101,12 +101,15 @@
   }
   .intersection {
     position: relative;
-    left: -100px;
-
     display: block;
     width: 0px;
     height: 0px;
     opacity: 0;
+  }
+  @media (min-width: 600px) {
+    .intersection {
+      left: -100px;
+    }
   }
 </style>
 

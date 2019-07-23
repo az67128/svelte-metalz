@@ -48,6 +48,8 @@
     margin: 0;
     border: none;
     cursor: pointer;
+    font-size: 1rem;
+    outline: none;
   }
   .selected {
     color: #b2102f;
