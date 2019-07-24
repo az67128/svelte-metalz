@@ -1,4 +1,5 @@
 <script>
+  import { onDestroy } from "svelte";
   import genres from "../utils/genres";
   import IconButton from "./IconButton.svelte";
   import LeftArrowIcon from "../assets/LeftArrowIcon.svelte";
@@ -7,8 +8,17 @@
   import { fly } from "svelte/transition";
   const close = () => {
     showGenreDialog.set(false);
+  };
+  const reset = () => {
+    showGenreDialog.set(false);
     selectedGenres.reset();
   };
+  if (typeof document !== "undefined")
+    document.addEventListener("backbutton", close, false);
+  onDestroy(() => {
+    if (typeof document !== "undefined")
+      document.removeEventListener("backbutton", close);
+  });
 </script>
 
 <style>
@@ -69,11 +79,11 @@
     class="genreSelect"
     transition:fly={{ x: -window.innerWidth, duration: 300 }}>
     <header>
-      <IconButton onClick={() => showGenreDialog.set(false)}>
+      <IconButton onClick={close}>
         <LeftArrowIcon />
       </IconButton>
       <div>{translate('genreSelectTitle')}</div>
-      <button class="button" on:click={close}>RESET</button>
+      <button class="button" on:click={reset}>RESET</button>
     </header>
     <main>
       {#each genres as genre, index (genre)}

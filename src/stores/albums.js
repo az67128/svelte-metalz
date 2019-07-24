@@ -55,7 +55,6 @@ export const currentMonth = (() => {
   };
 })();
 
-
 currentMonth.subscribe(value => {
   albums.get(value.getFullYear(), value.getMonth() + 1);
 });
@@ -78,7 +77,7 @@ export const sortedAlbums = derived(
       })
       .sort((a, b) => {
         if ($sortByAphabet) {
-          return a.title < b.title ? -1 : 1;
+          return a.author < b.author ? -1 : 1;
         } else {
           return a.listeners < b.listeners ? 1 : -1;
         }
