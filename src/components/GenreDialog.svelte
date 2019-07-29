@@ -13,11 +13,11 @@
     showGenreDialog.set(false);
     selectedGenres.reset();
   };
-  if (typeof document !== "undefined")
-    document.addEventListener("backbutton", close, false);
+  if (typeof window !== "undefined")
+    window.addEventListener("popstate", close, false);
   onDestroy(() => {
-    if (typeof document !== "undefined")
-      document.removeEventListener("backbutton", close);
+    if (typeof window !== "undefined")
+      window.removeEventListener("popstate", close);
   });
 </script>
 

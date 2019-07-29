@@ -1,7 +1,7 @@
 function getLang() {
-  // if (navigator.languages != undefined) return navigator.languages[0];
-  // else return navigator.language;
-  return 'en-US';
+  if (typeof navigator === 'undefined') return 'en-US';
+  if (navigator.languages != undefined) return navigator.languages[0];
+  else return navigator.language;
 }
 const lang = getLang();
 const translation = {
@@ -12,6 +12,10 @@ const translation = {
   genreSelectTitle: {
     'ru-RU': 'ВЫБЕРИТЕ ЖАНРЫ',
     'en-US': 'SELECT GENRES',
+  },
+  noAlbums: {
+    'ru-RU': 'Альбомы не нашлись',
+    'en-US': 'No albums',
   },
 };
 

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.az67128.metalz",
+      "sha256_cert_fingerprints": [
+        "SHA256: 56:FF:D4:85:98:EF:16:4E:75:BB:C6:CA:66:EE:8A:B0:42:7B:0C:3F:8A:2A:64:61:0A:88:6F:46:31:ED:B2:BB"
+      ]
+    }
+  }
+]

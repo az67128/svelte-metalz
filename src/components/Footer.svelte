@@ -10,6 +10,11 @@
     showGenreDialog,
     selectedGenres
   } from "../stores/albums";
+
+  const openGenreDialog = () => {
+    history.pushState({}, "Select genre", "/");
+    showGenreDialog.update(state => !state);
+  };
 </script>
 
 <style>
@@ -35,8 +40,7 @@
 </style>
 
 <footer>
-  <IconButton onClick={() => showGenreDialog.update(state => !state)}>
-
+  <IconButton onClick={openGenreDialog}>
     <GuitarIcon fill={$selectedGenres.length > 0 ? '#b2102f' : 'white'} />
   </IconButton>
   <IconButton onClick={() => filterYandex.update(state => !state)}>

@@ -1,6 +1,7 @@
 <script>
   import { spiritOfMetalUrl } from "../../config";
   import { coverPreviewSrc } from "../../stores/albums";
+  import GuitarIcon from "../../assets/GuitarIcon.svelte";
   export let cover_url;
   export let title;
   export let author;
@@ -9,6 +10,8 @@
   const viewCover = () => {
     coverPreviewSrc.set(src);
   };
+
+  // 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
 </script>
 
 <style>
@@ -28,11 +31,15 @@
     height: 88px;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
       0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .cover img {
     width: 88px;
     height: 88px;
+    cursor: pointer;
   }
   .albumTitle {
     font-size: 1.2rem;
@@ -43,10 +50,11 @@
 
 <div class="content">
   <div class="cover" on:click={viewCover}>
-    <img
-      {src}
-      alt="album-cover"
-      on:error={() => (src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=')} />
+    {#if src}
+      <img {src} alt="album-cover" on:error={() => (src = null)} />
+    {:else}
+      <GuitarIcon width="40" />
+    {/if}
   </div>
   <div class="albumInfo">
     <div class="albumTitle">{author}</div>

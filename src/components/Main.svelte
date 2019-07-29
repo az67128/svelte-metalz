@@ -11,6 +11,7 @@
     currentMonth
   } from "../stores/albums";
   import Loader from "./Loader.svelte";
+  import NoAlbums from "./NoAlbums.svelte";
 
   let container;
   const scrollToTop = () => {
@@ -124,6 +125,9 @@
     {#if $isLoading}
       <Loader />
     {:else}
+      {#if $sortedAlbums.length === 0}
+        <NoAlbums />
+      {/if}
       {#each $sortedAlbums.slice(0, limit) as album, index (album.album_id)}
         <Album {album} />
         {#if (index + 1) % 5 === 0 || index + 1 === limit}

@@ -1,8 +1,9 @@
 <script>
   export let fill = "black";
+  export let width = "24";
 </script>
 
-<svg width="24" {fill} viewBox="0 0 481.677 481.678">
+<svg {width} {fill} viewBox="0 0 481.677 481.678">
   <g>
     <g>
       <path
